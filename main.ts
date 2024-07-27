@@ -4,10 +4,12 @@ export default class ExamplePlugin extends Plugin {
 	statusBarTextElement: HTMLElement;
 
 	async onload() {
+		// Add a class to the status bar item
+		// Add a class to the status bar item
 		this.statusBarTextElement = this.addStatusBarItem().createEl('span');
+
+		// Define the CSS for the hover effect
 		this.readAndUpdateLineCount();
-
-
 		this.app.workspace.on('active-leaf-change', async () => {
 			this.readAndUpdateLineCount()
 		});
@@ -16,11 +18,6 @@ export default class ExamplePlugin extends Plugin {
 			this.updateLineCount(content)
 		});
 	}
-
-
-
-
-	
 	private updateLineCount(fileContent?: string) {
 		const count = fileContent ? fileContent.split(/\r\n|\r|\n/).length : 0;
 		const linesWord = count === 1 ? 'line' : 'lines';
